@@ -2,7 +2,7 @@
 SynthDef(\kick, {
     var sig, env;
     env = Env.perc(\atk.kr(0.001), \rel.kr(0.5), 1, \crv.kr(-6)).ar(doneAction: 2);
-    sig = SinOsc.ar(env.pow(\envpow.kr(2)).linexp(0, 1, 40, 750));
+    sig = SinOsc.ar(env.pow(\envpow.kr(2)).linexp(0, 1, 40, 450));
     sig = sig * env * \amp.kr(0.2);
     sig = Pan2.ar(sig, \pan.kr(0));
     Out.ar(\out.kr(0), sig);
