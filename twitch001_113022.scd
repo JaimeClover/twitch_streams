@@ -17,8 +17,8 @@ SynthDef(\snare, {
         EnvGen.kr(Env.perc,
             1,
             timeScale: 0.1, doneAction: 0
-        ) * PinkNoise.ar(0.4),
-        0.05,
+        ) * WhiteNoise.ar(0.4),
+        env.pow(1).linlin(0, 1, 0.04, 0.042),//0.05,
         0.999999,
     ), \membrane.kr(0.9));
     sig = sig * env * \amp.kr(0.2);
