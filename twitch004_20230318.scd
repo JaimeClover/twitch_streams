@@ -108,11 +108,11 @@ Pdef(\pingpat, Pbind(
     \rel, 2.6,
     \octave, Pseq([4, 6, 5, 6, 5, 6], inf) + 1,
     \pan, Pwhite(-1.0, 1.0) * 0.5,
-    \degree, Pshuf([0,1,2,3,4,6], inf),
+    \degree, Pn(Pshuf([0,1,2,3,4,6], 4)),
     \dur, 1/3,
     \delays, Pwrand([Pwhite(2, 8, 1), 1], [1, 3].normalizeSum, inf),
     \lag, Pfunc{|ev| Array.series(ev.delays, 0, 1/2) * TempoClock.default.beatDur},
-    \amp, 0.1 * Pseq([2, 2, 2, 3, 2, 2], inf) * Pfunc{|ev|
+    \amp, 0.1 * Pseq([0.7, 2, 2, 3, 2, 2], inf) * Pfunc{|ev|
         if(ev.lag == 0){1}{Array.geom(ev.delays, 1, 0.5)}
     },
 )).play;
@@ -128,6 +128,6 @@ Pdef(\pingpat, Pbind(
 )
 ~verb.set(\wet, 0.05)
 
-TempoClock.default.tempo = 0.5;
+TempoClock.default.tempo = 0.4;
 
 // ok, I think that's enough for today. Peace
