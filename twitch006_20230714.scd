@@ -56,8 +56,8 @@ SynthDef(\snare, {
 )
 
 (
-// ~synth = Synth(\addy, [amp: 0.016, freq: 55]);
-// ~synth2 = Synth(\addy, [amp: 0.016, freq: 55]);
+~synth = Synth(\addy, [amp: 0.016, freq: 55]);
+
 ~root = 4;
 ~odds = [1, 0];
 ~evens = [0, 1];
@@ -101,24 +101,24 @@ Pdef(\synth3pat,
     Pbind(
         \instrument, \addy,
         \dur, 1/8,
-        \legato, 0.2,
-        \octave, 3,
+        \legato, 0.25,
+        \octave, 2,
         \root, ~root,
         \maxHarm, 20,
         // \stretch, Ptri(6.28, 1.0.rand, 0.001, 1),
-        \mod, 1,
-        \car, 1,
+        \mod, 6,
+        \car, 2,
         \amps, Pfunc{|ev|
             var diff, sum;
             diff = ~n.collect{|j| (ev.car - (ev.mod * j)).abs};
             sum = ~n.collect{|j| ev.car + (ev.mod * j)};
             [(1..~n).collect{|i|
-                if((sum ++ diff ++ [1]).includesEqual(i)) {i.reciprocal.pow(0.3)} {0}
+                if((sum ++ diff ++ [1]).includesEqual(i)) {i.reciprocal.pow(1.4)} {0}
             }]
         },
         \det, 0,
         \n, Pwhite(1, 8),
-        \amp, 0.02,
+        \amp, 0.16,
     )
 ).play;
 
